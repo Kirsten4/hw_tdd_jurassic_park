@@ -49,4 +49,29 @@ Park.prototype.calculateRevenuePerYear = function () {
     return this.calculateYearlyVisitors() * this.ticketPrice
 }
 
+Park.prototype.removeAllBySpecies = function (species) {
+    let dinosToRemove = this.findDinosOfSpecies(species);
+    for (let dinosaur of dinosToRemove){
+        this.removeDino(dinosaur)
+    }
+}
+
+Park.prototype.createDietObject = function () {
+    const dietObject = {
+        carnivore: 0,
+        herbivore: 0,
+        omnivore: 0    
+    }; 
+    for (let dinosaur of this.dinosaurs) {
+        if (dinosaur.diet === 'carnivore'){
+            dietObject.carnivore ++;
+        } else if (dinosaur.diet === 'herbivore'){
+            dietObject.herbivore ++;
+        } else {
+            dietObject.omnivore ++;
+        }
+    }
+    return dietObject
+}
+
 module.exports = Park
